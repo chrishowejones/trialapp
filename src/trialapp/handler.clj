@@ -8,8 +8,7 @@
             [ring.middleware.params :refer [wrap-params]]
             [clojure.pprint :refer :all]
             [hiccup.core :refer :all]
-            [hiccup.page :refer [include-css include-js]]
-            [hiccup.form :refer [form-to text-field submit-button]]))
+            [hiccup.page :refer [include-css include-js]]))
 
 (defn init []
   (println "test is starting"))
@@ -26,10 +25,10 @@
    [:body
     [:div {:class "col-lg-6" }
      [:div {:class "input-group" }
-      (form-to [:post "/saveform"]
-               (text-field {:class "form-control" :placeholder "How old are you?"} "age")
+      [:form {:action "/saveform" :method "post"}
+       [:input {:type "text" :class "form-control" :placeholder "How old are you?" :name "age"}]
                [:span {:class "input-group-btn" }]
-               (submit-button {:class "btn btn-default"} "Go, baby!"))]]]))
+               [:button {:class "btn btn-default" :type "submit"} "Go, baby!"]]]]]))
 
 
 (defroutes app-routes
